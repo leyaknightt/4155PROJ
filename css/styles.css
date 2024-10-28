@@ -1,0 +1,16 @@
+* { 
+    margin: 10;
+    background-color: aqua;
+}
+nav { 
+    background-color: #333;
+    padding: 10px; 
+    text-align: center;
+}
+
+nav a { 
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px; 
+
+}
