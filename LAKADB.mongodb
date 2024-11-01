@@ -1,0 +1,27 @@
+const database = 'LAKA_DB';
+const collection = 'NEW_COLLECTION_NAME';
+
+// Create a new database.
+use(database);
+
+// Create collections and indexes
+db.users.createIndex({ "username": 1 }, { unique: true });
+db.users.createIndex({ "email": 1 }, { unique: true });
+db.users.createIndex({ "createdAt": 1 });
+
+db.profiles.createIndex({ "userId": 1 });
+
+db.jobs.createIndex({ "title": 1 });
+db.jobs.createIndex({ "company": 1 });
+db.jobs.createIndex({ "location": 1 });
+db.jobs.createIndex({ "postedAt": 1 });
+
+db.applications.createIndex({ "userId": 1 });
+db.applications.createIndex({ "jobId": 1 });
+db.applications.createIndex({ "appliedAt": 1 });
+
+db.logs.createIndex({ "userId": 1 });
+db.logs.createIndex({ "timestamp": 1 });
+
+db.settings.createIndex({ "userId": 1 });
+

@@ -1,0 +1,26 @@
+// Create users collection and indexes
+db.users.createIndex({ "username": 1 }, { unique: true });
+db.users.createIndex({ "email": 1 }, { unique: true });
+db.users.createIndex({ "createdAt": 1 });
+
+// Create profiles collection and index
+db.profiles.createIndex({ "userId": 1 });
+
+// Create jobs collection and indexes
+db.jobs.createIndex({ "title": 1 });
+db.jobs.createIndex({ "company": 1 });
+db.jobs.createIndex({ "location": 1 });
+db.jobs.createIndex({ "postedAt": 1 });
+
+// Create applications collection and index
+db.applications.createIndex({ "userId": 1 });
+db.applications.createIndex({ "jobId": 1 });
+db.applications.createIndex({ "appliedAt": 1 });
+
+// Create logs collection and index
+db.logs.createIndex({ "userId": 1 });
+db.logs.createIndex({ "timestamp": 1 });
+
+// Create settings collection and index
+db.settings.createIndex({ "userId": 1 });
+
