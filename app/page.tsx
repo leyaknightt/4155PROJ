@@ -4,8 +4,8 @@
 // import './css/styles.css';  // Adjust path according to your directory structure
 import '../css/styles.css';  // Correct path to styles.css
 
-
 import React, { useEffect, useState } from "react";
+
 interface Job {
   id: string;
   title: string;
@@ -46,18 +46,35 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="logo">LAKA</div>
+        <ul className="nav-links">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/saved">Saved Jobs</a></li>
+          <li><a href="/post">Post a Job</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div className="profile-icon">
+          <img src="/path-to-profile-icon.png" alt="Profile" />
+        </div>
+      </nav>
+
+      {/* Search Bar */}
       <header>
         <input type="text" placeholder="Software Engineer" />
         <input type="text" placeholder="Charlotte, NC, USA" />
         <button>Search</button>
       </header>
 
+      {/* Filters */}
       <div className="filters">
         <button>Full-Time</button>
         <button>Within 50 miles</button>
         <button>$90,000+</button>
       </div>
 
+      {/* Job Listings and Details */}
       <div className="content">
         <div className="job-list">
           {loading && <p>Loading jobs...</p>}
