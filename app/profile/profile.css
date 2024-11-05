@@ -9,6 +9,13 @@
 
 .profile-pic {
     border-radius: 50%;
+    padding: 10px;
+}
+
+.pic-and-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .profile-details {
@@ -17,7 +24,7 @@
 }
 
 .profile-editbtn {
-    margin-left: 85%;
+    
     margin-top: 10px;
     text-align: right;
 }

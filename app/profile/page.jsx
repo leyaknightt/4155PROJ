@@ -2,20 +2,21 @@
 import React, { useState } from 'react';
 import '../profile/profile.css';
 import Tag from './tag';
+import Image from 'next/image';
 
 export default function Profile() {
     // random tags for testing
     const [sections, setSections] = useState({
         skills: [
-            {index: 1, text:"HTML"},
-            {index: 2, text:"Java"} , 
-            {index:3, text:"Python"}
+            { index: 1, text: "HTML" },
+            { index: 2, text: "Java" },
+            { index: 3, text: "Python" }
 
         ],
         interests: [
-            {index:4, text:"Coding"},
-            {index:5, text: "Painting"},
-            {index:6, text:"Gaming"}
+            { index: 4, text: "Coding" },
+            { index: 5, text: "Painting" },
+            { index: 6, text: "Gaming" }
         ],
     });
 
@@ -31,7 +32,7 @@ export default function Profile() {
     // function to add new tags
     function addTag(section) {
         const newTagContent = prompt("Write here");
-       if (newTagContent) {
+        if (newTagContent) {
             const newTag = {
                 index: Date.now(), //create a unique index
                 text: newTagContent,
@@ -49,17 +50,21 @@ export default function Profile() {
             <h1>Profile</h1>
             <main className="profile">
                 <div className="personal-info">
-                    {/* Profile Image */}
-                    <img
-                        src="./assets/alice.jpg"
-                        alt="Profile Image"
-                        className="profile-pic"
-                    />
-                    {/* Edit button */}
-                    <button className='profile-editbtn'>Edit</button>
+                    <div className='pic-and-name'>
+                        {/* Profile Image */}
+                        <Image
+                            src='/alice.jpg'
+                            alt="Profile Image"
+                            className="profile-pic"
+                            width={100}
+                            height={100}
+                        />
+                        <h1>Jane Doe</h1>
+                        {/* Edit button */}
+                        <button className='profile-editbtn'>Edit</button>
+                    </div>
                     {/* Profile Details */}
                     <div className="profile-details">
-                        <h1>Jane Doe</h1>
                         <p>
                             <strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
