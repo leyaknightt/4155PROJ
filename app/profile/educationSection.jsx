@@ -19,7 +19,6 @@ const EducationSection = () => {
 
     const fakeData = [
         {
-            id: 0,
             school: 'University of North Carolina at Charlotte',
             degree: 'Bachelor of Science',
             major: 'Computer Science',
@@ -56,18 +55,16 @@ const EducationSection = () => {
     };
 
     // Handle adding a new education entry
-    const handleAddEducation = () => {
+    const handleAddEducation = (e) => {
+        e.preventDefault();
         if (
             newEducation.school &&
             newEducation.degree &&
             newEducation.major &&
             newEducation.datesAttended
         ) {
-            const newEntry = {
-                id: Date.now(),
-                ...newEducation,
-            }
-            setEducations((prev) => [...prev, newEntry]);
+           
+            setEducations((prev) => [...prev, newEducation]);
             setNewEducation({
                 school: '',
                 degree: '',
@@ -81,14 +78,13 @@ const EducationSection = () => {
 
     // Handle deleting an education entry
     const handleDeleteEducation = (index) => {
-        setEducations((prev) => prev.filter((education) => education.id !== index));
+        setEducations((prev) => prev.filter((_, idx) => idx !== index));
     };
 
     // Handle editing an education entry
     const handleEditEducation = (index) => {
         const education = educations[index];
         setEditEducation(education);
-        //handleDeleteEducation(index); // Remove the entry being edited
     };
 
     // Save the edited education entry
@@ -115,82 +111,106 @@ const EducationSection = () => {
                     {isFormVisible ? '-' : '+'}
                 </button>
                 {isFormVisible && (
-                    <form >
-                        <input
+                    <form className='edit-frm'>
+                        <div>
+                            <label htmlFor="school">School: </label>
+                            <input
                             type="text"
                             name="school"
                             value={newEducation.school}
                             onChange={handleInputChange}
                             placeholder="School Name"
                         />
-                        <input
+                        </div>
+                        <div>
+                            <label htmlFor="degree">Degree: </label>
+                           <input
                             type="text"
                             name="degree"
                             value={newEducation.degree}
                             onChange={handleInputChange}
-                            placeholder="Degree"
-                        />
-                        <input
+                            placeholder="Bachelor of Science"
+                        /> 
+                        </div>
+                        <div>
+                            <label htmlFor="datesAttended">Dates Attended: </label>
+                           <input
                             type="text"
                             name="datesAttended"
                             value={newEducation.datesAttended}
                             onChange={handleInputChange}
-                        />
-                        <input type="text"
+                            placeholder='2020-2024'
+                        /> 
+                        </div>
+                        <div>
+                            <label htmlFor="major">Major: </label>
+                           <input type="text"
                             name="major"
                             value={newEducation.major}
                             onChange={handleInputChange}
-                        />
+                            placeholder='Enter your major here'
+                        /> 
+                        </div>
                         <button onClick={handleAddEducation}> Add Education</button>
                     </form>)
-
                 }
             </div>
             {/* Edit education form; visible when editing */}
             {editEducation && (
-                <form >
-                    <input
+                <form name='edit' className='edit-frm' >
+                    <div>
+                        <label htmlFor="school">School: </label>
+                        <input
                         type="text"
                         name="school"
                         value={editEducation.school}
-                        onChange={handleInputChange}
+                        onChange={handleEditChange}
                         placeholder="School Name"
                     />
-                    <input
+                    </div>
+                    <div>
+                        <label htmlFor="degree">Degree: </label>
+                        <input
                         type="text"
                         name="degree"
                         value={editEducation.degree}
                         onChange={handleEditChange}
                         placeholder="Degree"
                     />
-                    <input
+                    </div>
+                    <div>
+                        <label htmlFor="datesAttended">Dates Attended: </label>
+                       <input
                         type="text"
                         name="datesAttended"
                         value={editEducation.datesAttended}
                         onChange={handleEditChange}
-                    />
-                    <input type="text"
+                    /> 
+                    </div>
+                    <div>
+                        <label htmlFor="major">Major: </label>
+                       <input type="text"
                         name="major"
                         value={editEducation.major}
                         onChange={handleEditChange}
-                    />
+                    /> 
+                    </div>
                     <button onClick={handleSaveEdit}>Save Changes</button>
                     <button onClick={handleCancelEdit}>Cancel</button>
                 </form>
             )}
 
-
             {/* Display list of education entries */}
             {!editEducation && (
                 <ul>
-                {educations.map((education) => (
-                    <li key={education.id} className='card-info'>
+                {educations.map((education, idx) => (
+                    <li key={idx} className='card-info'>
                         <h3> <strong>School: </strong> {education.school}</h3>
                         <p><strong>Degree:</strong> {education.degree}</p>
                         <p><strong>Major:</strong> {education.major}</p>
                         <p><strong>Years Attended:</strong> {education.datesAttended}</p>
-                        <button className='education-btn' onClick={() => handleEditEducation(education.id)}>Edit</button>
-                        <button className='education-btn' onClick={() => handleDeleteEducation(education.id)}>Delete</button>
+                        <button className='education-btn' onClick={() => handleEditEducation(idx)}>Edit</button>
+                        <button className='education-btn' onClick={() => handleDeleteEducation(idx)}>Delete</button>
                     </li>
                 ))}
             </ul>

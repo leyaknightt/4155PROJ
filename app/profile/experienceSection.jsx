@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import '../profile/profile.css';
 
 const ExperienceSection = () => {
-    // State to store the list of education entries
+    // State to store the list of experience entries
     const [experiences, setExperience] = useState([]);
 
-    // State for new education form input
+    // State for new experience form input
     const [newExperience, setNewExperience] = useState({
         jobTitle: '',
         company: '',
@@ -15,12 +15,11 @@ const ExperienceSection = () => {
         jobDetails: '',
     });
 
-    // state to handle education being edited
+    // state to handle experience being edited
     const [editExperience, setEditExperience] = useState(null);
 
     const fakeData = [
         {
-            id: 0,
             jobTitle: 'Software Engineer',
             company: 'Microsoft',
             startDate: 'October 2022',
@@ -33,7 +32,6 @@ const ExperienceSection = () => {
         setExperience(fakeData);
     }, []);
 
-    const [editing, setEditing] = useState(null);
     const [isFormVisible, setVisibility] = useState(false);
 
     // toggle visibility of the form
@@ -58,19 +56,16 @@ const ExperienceSection = () => {
         }));
     };
 
-    // Handle adding a new education entry
-    const handleAddExperience = () => {
+    // Handle adding a new experience entry
+    const handleAddExperience = (e) => {
+        e.preventDefault();
         if (
             newExperience.jobTitle &&
             newExperience.company &&
             newExperience.startDate &&
             newExperience.endDate
         ) {
-            const newEntry = {
-                id: Date.now(),
-                ...newExperience,
-            }
-            setExperience((prev) => [...prev, newEntry]);
+            setExperience((prev) => [...prev, newExperience]);
             setNewExperience({
                 jobTitle: '',
                 company: '',
@@ -83,18 +78,18 @@ const ExperienceSection = () => {
         }
     };
 
-    // Handle deleting an education entry
+    // Handle deleting an experience entry
     const handleDeleteExperience = (index) => {
-        setExperience((prev) => prev.filter((exp) => exp.id !== index));
+        setExperience((prev) => prev.filter((_,idx) => idx !== index));
     };
 
-    // Handle editing an education entry
+    // Handle editing an experience entry
     const handleEditExperience = (index) => {
         const exp = experiences[index];
         setEditExperience(exp);
     };
 
-    // Save the edited education entry
+    // Save the edited eexperience entry
     const handleSaveEdit = () => {
         setExperience((prev) =>
             prev.map((exp) =>
@@ -112,48 +107,62 @@ const ExperienceSection = () => {
     return (
         <div>
 
-            {/* Form for adding or editing education */}
+            {/* Form for adding experience */}
             <div>
                 <button onClick={toggleFormVisibility}>
                     {isFormVisible ? '-' : '+'}
                 </button>
                 {isFormVisible && (
-                    <form >
-                        <input
-                            type="text"
-                            name="jobTitle"
-                            value={newExperience.jobTitle}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            name="company"
-                            value={newExperience.company}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            name="startDate"
-                            value={newExperience.startDate}
-                            onChange={handleInputChange}
-                            placeholder='Month Year'
-                        />
-                        <input type="text"
-                            name="endDate"
-                            value={newExperience.endDate}
-                            onChange={handleInputChange}
-                            placeholder='Month Year'
-                        />
-                        <textarea name="jobDetails"
-                            value={newExperience.jobDetails}
-                            onChange={handleInputChange}
-                            placeholder='Add a brief description of your job responsibilities' />
+                    <form className='edit-frm' >
+                        <div>
+                            <label htmlFor="jobTitle">Job Title: </label>
+                            <input
+                                type="text"
+                                name="jobTitle"
+                                value={newExperience.jobTitle}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="company">Company: </label>
+                            <input
+                                type="text"
+                                name="company"
+                                value={newExperience.company}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="startDate">Start Date: </label>
+                            <input
+                                type="text"
+                                name="startDate"
+                                value={newExperience.startDate}
+                                onChange={handleInputChange}
+                                placeholder='Month Year'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="endDate">End Date: </label>
+                            <input type="text"
+                                name="endDate"
+                                value={newExperience.endDate}
+                                onChange={handleInputChange}
+                                placeholder='Month Year'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="jobDescr">Job Details: </label>
+                            <textarea name="jobDetails"
+                                value={newExperience.jobDetails}
+                                onChange={handleInputChange}
+                                placeholder='Add a brief description of your job responsibilities' />
+                        </div>
                         <button onClick={handleAddExperience}> Add Experience</button>
                     </form>)
-
                 }
             </div>
-            {/* Edit education form; visible when editing */}
+            {/* Edit experience form; visible when editing */}
             {editExperience && (
                 <form className='edit-frm' >
                     <div>
@@ -168,55 +177,55 @@ const ExperienceSection = () => {
                     <div>
                         <label htmlFor="company">Company: </label>
                         <input
-                        type="text"
-                        name="company"
-                        value={editExperience.company}
-                        onChange={handleEditChange}
-                    /> 
+                            type="text"
+                            name="company"
+                            value={editExperience.company}
+                            onChange={handleEditChange}
+                        />
                     </div>
                     <div>
                         <label htmlFor="startDate">Start Date: </label>
-                       <input
-                        type="text"
-                        name="startDate"
-                        value={editExperience.startDate}
-                        onChange={handleEditChange}
-                        placeholder='Month Year'
-                    /> 
+                        <input
+                            type="text"
+                            name="startDate"
+                            value={editExperience.startDate}
+                            onChange={handleEditChange}
+                            placeholder='Month Year'
+                        />
                     </div>
                     <div>
                         <label htmlFor="endDate">End Date: </label>
                         <input type="text"
-                        name="endDate"
-                        value={editExperience.endDate}
-                        onChange={handleEditChange}
-                        placeholder='Month Year'
-                    />
+                            name="endDate"
+                            value={editExperience.endDate}
+                            onChange={handleEditChange}
+                            placeholder='Month Year'
+                        />
                     </div>
                     <div>
                         <label htmlFor="jobDetails">Job Details: </label>
                         <textarea name="jobDetails"
-                        value={editExperience.jobDetails}
-                        onChange={handleEditChange}
-                        placeholder='Add a brief description of your job responsibilities' />
-                    </div>                    
+                            value={editExperience.jobDetails}
+                            onChange={handleEditChange}
+                            placeholder='Add a brief description of your job responsibilities' />
+                    </div>
                     <button onClick={handleSaveEdit}>Save Changes</button>
                     <button onClick={handleCancelEdit}>Cancel</button>
                 </form>
             )}
 
 
-            {/* Display list of education entries */}
+            {/* Display list of experience entries */}
             {!editExperience && (
                 <ul>
-                    {experiences.map((exp) => (
-                        <li key={exp.id} className='card-info'>
+                    {experiences.map((exp,idx) => (
+                        <li key={idx} className='card-info'>
                             <h3> <strong>Job Title: </strong> {exp.jobTitle}</h3>
                             <p><strong>Company:</strong> {exp.company}</p>
                             <p><strong>Dates of Employment:</strong> {exp.startDate} - {exp.endDate}</p>
                             <p><strong>Job Details:</strong> {exp.jobDetails}</p>
-                            <button className='education-btn' onClick={() => handleEditExperience(exp.id)}>Edit</button>
-                            <button className='education-btn' onClick={() => handleDeleteExperience(exp.id)}>Delete</button>
+                            <button className='education-btn' onClick={() => handleEditExperience(idx)}>Edit</button>
+                            <button className='education-btn' onClick={() => handleDeleteExperience(idx)}>Delete</button>
                         </li>
                     ))}
                 </ul>
