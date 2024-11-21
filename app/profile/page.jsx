@@ -1,164 +1,161 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import '../profile/profile.css';
 import Tag from './tag';
 import Image from 'next/image';
+import BioEditor from './bioEditor';
+import EducationSection from './educationSection';
+import Certifications from './certifsSection';
+import ExperienceSection from './experienceSection';
 
 export default function Profile() {
-    // random tags for testing
-    const [sections, setSections] = useState({
-        skills: [
-            { index: 1, text: "HTML" },
-            { index: 2, text: "Java" },
-            { index: 3, text: "Python" }
-
-        ],
-        interests: [
-            { index: 4, text: "Coding" },
-            { index: 5, text: "Painting" },
-            { index: 6, text: "Gaming" }
-        ],
-    });
-
-    //function to delete tag by filtering index
-    function deleteTag(section, tagId) {
-        setSections((prevSections) => ({
-            ...prevSections,
-            [section]: prevSections[section].filter((tag) => tag.index !== tagId),
-        }));
-
+    // Create state to store different tags
+    const [skillTags, setSkills] = useState([]);
+    const [interestTags, setInterests] = useState([]);
+    const [inputValue, setInput] = useState("");
+    const [tagType, setType] = useState('skill');
+    const handleInputChange = (event) => { setInput(event.target.value); }
+    // simulate existing user data (info from db would go here)
+    const existingUserData = {
+        name: 'Jane Doe',
+        email: 'jane.doe@example.com',
+        bio: 'Aspiring software developer with a passion for learning.',
+        phone: '704-123-4567',
+        location: 'Charlotte, NC',
     };
+    const [isEditing, setIsEditing] = useState(false);
+    const [profileData, setProfileData] = useState(existingUserData);
 
-    // function to add new tags
-    function addTag(section) {
-        const newTagContent = prompt("Write here");
-        if (newTagContent) {
-            const newTag = {
-                index: Date.now(), //create a unique index
-                text: newTagContent,
-            };
-            setSections((prevSections) => ({
-                ...prevSections,
-                [section]: [...prevSections[section], newTag],
-            }))
+    //////// Function to handle tags////////
+    //function to delete tag based on type
+    function deleteTag(targetTag, tagType) {
+        if (tagType == 'skill') {
+            setSkills(skillTags.filter((tag) => tag !== targetTag));
+        }
+        if (tagType == 'interest') {
+            setInterests(interestTags.filter((tag) => tag !== targetTag));
         }
     };
 
+    // function to add new tags
+    function addTag() {
+        const newTagContent = inputValue.trim();
+        // for skill tags
+        if (tagType == 'skill' && !skillTags.includes(newTagContent)) {
+            setSkills((prevTags) => [...prevTags, newTagContent]);
+        }
+
+        // for interest tags
+        if (tagType == 'interest' && !interestTags.includes(newTagContent)) {
+            setInterests((prevTags) => [...prevTags, newTagContent]);
+        }
+
+        setInput(''); // clears the input field
+    };
+
+    //// functions for bio////
+    function handleEdit() {
+        setIsEditing(true); // Toggle edit mode
+    }
+
+    function handleBioSave(updatedData) {
+        setProfileData(updatedData);
+        setIsEditing(false);
+    }
 
     return (
         <>
             <h1>Profile</h1>
             <main className="profile">
-                <div className="personal-info">
-                    <div className='pic-and-name'>
-                        {/* Profile Image */}
-                        <Image
-                            src='/alice.jpg'
-                            alt="Profile Image"
-                            className="profile-pic"
-                            width={100}
-                            height={100}
-                        />
-                        <h1>Jane Doe</h1>
-                        {/* Edit button */}
-                        <button className='profile-editbtn'>Edit</button>
-                    </div>
-                    {/* Profile Details */}
-                    <div className="profile-details">
-                        <p>
-                            <strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.
-                        </p>
-                        <h2>Contact Information</h2>
-                        <ul className="contact info">
-                            <li>
-                                <strong>Email:</strong> jane.doe@example.com
-                            </li>
-                            <li>
-                                <strong>Phone:</strong> +1 (704) 123-4567
-                            </li>
-                            <li>
-                                <strong>Location:</strong> Charlotte, NC
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                {isEditing ? (
+                    <BioEditor existingUserData={profileData} onSave={handleBioSave} />
+                ) : (
+                    <div className="personal-info">
+                        <div className='pic-and-name'>
+                            {/* Profile Image */}
+                            <Image
+                                src='/alice.jpg'
+                                alt="Profile Image"
+                                className="profile-pic"
+                                width={100}
+                                height={100}
+                            />
+                            <h1>{profileData.name}</h1>
+                            {/* Edit button */}
+                            <button className='profile-editbtn' onClick={handleEdit}>Edit</button>
+                        </div>
+                        {/* Profile Details */}
+                        <div className="profile-details">
+                            <p>
+                                <strong>Bio:</strong> {profileData.bio}
+                            </p>
+                            <h2>Contact Information</h2>
+                            <ul className="contact info">
+                                <li>
+                                    <strong>Email:</strong> {profileData.email}
+                                </li>
+                                <li>
+                                    <strong>Phone:</strong> {profileData.phone}
+                                </li>
+                                <li>
+                                    <strong>Location:</strong> {profileData.location}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>)}
                 <h2>Education</h2>
                 <ul className="cards">
-                    <button className='profile-addbtn'>+</button>
-                    <div className='card-info'>
-                        <button className='profile-editbtn'>Edit</button>
-                        <button>Delete</button>
-                        <h3>University of North Carolina at Charlotte</h3>
-                        <p>
-                            <strong>Degree: </strong>Bachelor of Science
-                        </p>
-                        <p>
-                            <strong>Major: </strong>Computer Science
-                        </p>
-                        <p>2021 - 2024</p>
-                    </div>
-
+                    <EducationSection />
                 </ul>
                 <h2>Certifications</h2>
-                <ul className="cards">
-                    <button className='profile-editbtn'>Edit</button>
-                    <p>Google Cloud Professional Cloud Architect</p>
-                    <p>AWS Certified Solutions Architect Associate</p>
-                    <p>Certified Kubernetes Administrator</p>
-                </ul>
+                <Certifications />
+                
                 {/* Additional Details Section */}
-                <h3>Skills &amp; Interests</h3>
+                <h2>Skills &amp; Interests</h2>
                 <section className="cards">
                     <div className="row">
-                        <div className="card-info">
-                            <button className='skills-addbtn'
-                                onClick={() => addTag('skills')}>+</button>
-                            <h4>Skills</h4>
-                            <div className='tag-container'>
-                                {sections.skills.map((tag) => (
-                                    <Tag key={tag.index} text={tag.text}
-                                        onDelete={() => deleteTag('skills', tag.index)} />
-                                ))}
-
-                            </div>
+                        <div className='tagSelection'>
+                            <button className='tagType' onClick={() => setType('skill')}>Skill Tags</button>
+                            <button className='tagType' onClick={() => setType('interest')}>Interest Tags</button>
                         </div>
                         <br />
-                        <div className="card-info">
+                        <div>
+                            <input className='tag-input'
+                                type='text'
+                                name='tag'
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                placeholder='Add tag here' />
                             <button className='skills-addbtn'
-                                onClick={() => addTag('interests')}>+</button>
+                                onClick={() => addTag()}>+</button>
+                        </div>
+                        <br />
+                        {/* Skills Section */}
+                        <div className="card-info">
+                            <h4>Skills</h4>
+                            <div className='tag-container'>
+                                {skillTags.map((tag, index) => (
+                                    <Tag key={index} text={tag}
+                                        onDelete={() => deleteTag(tag, 'skill')} />
+                                ))}
+                            </div>
+                        </div>
+                        {/* Interests section */}
+                        <br />
+                        <div className="card-info">
                             <h4>Interests</h4>
                             <div className='tag-container'>
-                                {sections.interests.map((tag) => (
-                                    <Tag key={tag.index} text={tag.text}
-                                        onDelete={() => deleteTag('interests', tag.index)} />
+                                {interestTags.map((tag, index) => (
+                                    <Tag key={index} text={tag}
+                                        onDelete={() => deleteTag(tag, 'interest')} />
                                 ))}
-
                             </div>
                         </div>
                     </div>
                 </section>
                 <h2>Experience</h2>
                 <section className="cards">
-                    <button className='profile-addbtn'>+</button>
-                    <div className='card-info'>
-                        <button className='profile-editbtn'>Edit</button>
-                        <button>Delete</button>
-                        <p>
-                            <strong>Job Title: </strong>Software Engineer
-                        </p>
-                        <p>
-                            <strong>Company: </strong> Microsoft
-                        </p>
-                        <p>
-                            <strong>Date of Employment: </strong>October 2021 - Present
-                        </p>
-                    </div>
-
+                    <ExperienceSection />
                 </section>
             </main>
         </>
