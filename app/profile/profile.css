@@ -12,6 +12,76 @@ h2 {
     font-size: 24px;
 }
 
+/* General layout */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile {
+    max-width: 1200px;
+    margin: auto;
+    /* padding: 20px; */
+  }
+  
+
+
+ /* Navbar */
+ .navbar {
+    display: flex;
+    align-items:start;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    margin: 15px;
+    width: 100%;               
+    position:static;            
+    top: 0;                     
+    left: 0;                    
+    z-index: 1000;               
+
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #085f0f;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: inline;
+    margin: 10px;
+  }
+  
+  .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-links a:hover {
+    color: #085f0f;
+    border-bottom: 2px solid #085f0f; /* Underline color on hover */
+
+  }
+  
+  .profile-icon img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: grey;
+  }
+
+
 /* Container for bio and pic */
 .personal-info {
     margin-left: 25px;

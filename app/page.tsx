@@ -1,6 +1,7 @@
 "use client";  // Add this to make the component a client component
 
 
+import Link from 'next/link';
 // import './css/styles.css';  // Adjust path according to your directory structure
 import '../css/styles.css';  // Correct path to styles.css
 
@@ -50,13 +51,15 @@ const HomePage: React.FC = () => {
       <nav className="navbar">
         <div className="logo">LAKA</div>
         <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/saved">Saved Jobs</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
           <li><a href="/post">Post a Job</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
         <div className="profile-icon">
-          <img src="/path-to-profile-icon.png" alt="Profile" />
+          <Link href="/profile">
+            <img src="/path-to-profile-icon.png" alt="Profile" style={{ cursor: 'pointer' }} />
+          </Link>
         </div>
       </nav>
 
