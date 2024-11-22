@@ -1,3 +1,17 @@
+:root {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: 550;
+    font-size: 24px;
+}
+
 /* Container for bio and pic */
 .personal-info {
     margin-left: 25px;
@@ -24,14 +38,14 @@
 }
 
 .profile-editbtn {
-    
+
     margin-top: 10px;
     text-align: right;
 }
 
 .profile-addbtn {
     margin-left: 90%;
-    
+
 }
 
 /*  Layout for every section */
@@ -39,12 +53,36 @@
     border-radius: 25px;
     background-color: #f2f2f2;
     padding: 15px;
+    margin: 10px 20px;
 }
 
 .card-info {
     background-color: white;
     border-radius: 25px;
     padding: 10px;
+    margin: 10px 10px;
+}
+
+/* CSS for education section */
+.education-btn {
+    margin: 5px 10px;
+    border-color: black;
+    border: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 5px;
+    background-color: #f2f2f2;
+}
+
+.education-btn:hover {
+    background-color: white;
+}
+
+/* CSS for certifications */
+.certs-container {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    gap: 5px;
 }
 
 /* CSS for tags */
@@ -59,6 +97,11 @@
     align-items: center;
 }
 
+.tagSelection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .delete-btn {
     border: none;
     color: white;
@@ -66,12 +109,39 @@
     padding: '5px 10px';
 }
 
+.tag-input {
+    border-color: black;
+    border: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
 .tag-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.skills-addbtn{
+.skills-addbtn {
     border: none;
-    margin-left: 90%;
+    margin-left: 10px;
+}
+
+.tagType {
+    border: 2px;
+    border-style: solid;
+    border-radius: 25px;
+
+}
+
+.tagType:focus {
+    background-color: darkgray;
+}
+
+.tagType:visited {
+    background-color: darkgray;
+}
+
+.edit-frm{
+    display: grid;
+    gap: 10px;
 }
