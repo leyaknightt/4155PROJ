@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        p {
+            margin: 0px 0; /* Small space between elements */
+        }
+
+        .list-unstyled {
+            margin: px 0;
+        }
+        nav a.active {
+            font-weight: bold; /* Make active link bold */
+            color: #0056b3; /* Darker color for the active link */
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href='index.html'>Home</a>
+        <a href='login.html'>Login</a>
+        <a href='signup.html'>Sign Up</a>
+        <a href='profile.html' class="active">Profile</a>
+    </nav>
+    <h1>Profile</h1>
+
+    <main class="container mt-5">
+        <div class="row">
+            <!-- Profile Image -->
+            <img src="images/alice.jpg" alt="Profile Image" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+          
+
+            <!-- Profile Details -->
+            <div class="col-md-8">
+                <h1>Jane Doe</h1>
+                <p><strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                <h2>Contact Information</h2>
+                <ul class="list-unstyled">
+                    <li><strong>Email:</strong> jane.doe@example.com</li>
+                    <li><strong>Phone:</strong> +1 (704) 123-4567</li>
+                    <li><strong>Location:</strong> Charlotte, NC</li>
+                </ul>
+            </div>
+        </div>
+        <h2>Education</h2>
+        <ul class="educationEx">
+        <p>University of North Carolina at Charlotte</p>
+        <p><strong>Degree: </strong>Bachelor of Science</p>
+        <p><strong>Major: </strong>Computer Science</p>
+        <p>2021 - 2024</p>
+    </ul>
+    
+    <h2>Certifications</h2>
+    <ul class="certify">
+    <p>Google Cloud Professional Cloud Architect</p>
+    <p>AWS Certified Solutions Architect Associate</p>
+    <p>Certified Kubernetes Administrator</p>
+</ul>
+        <!-- Additional Details Section -->
+        <section class="mt-5">
+            <h3>Skills & Interests</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>HTML/CSS</li>
+                        <li>Node.js</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Interests</h4>
+                    <ul>
+                        <li>Coding</li>
+                        <li>Reading</li>
+                        <li>Traveling</li>
+                        <li>Photography</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience">
+            <h2>Experience</h2>
+        <p><strong>Job Title: </strong>Lorem</p>
+        <p><strong>Company: </strong>Lorem ipsum </p>
+        <p><strong>Date of Employment: </strong>October 2021 - Present</p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"></script>
+</body>
+</html>

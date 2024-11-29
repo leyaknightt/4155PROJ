@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        nav a.active {
+            font-weight: bold; /* Make active link bold */
+            color: #0056b3; /* Darker color for the active link */
+        }
+
+        .col-md-6 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between each job box */
+            margin: 20px auto;
+            max-width: 800px; /* Max width for the job listings container */
+            padding: 10px;
+        }
+        /* Individual Job Box Styling */
+        .job-card {
+            background-color: #ffffff; /* White background for the job box */
+            border: 1px solid #ddd; /* Light grey border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Padding inside the box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+        }
+        .job-details {
+            background-color: #ffffff; /* White background for job details */
+            border: 1px solid #ddd; /* Light grey border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Padding inside the box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+            margin: 20px 0; /* Space above and below the job details */
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href='index.html' class="active">Home</a>
+        <a href='login.html'>Login</a>
+        <a href='signup.html'>Sign Up</a>
+        <a href='profile.html'>Profile</a>
+        <img src="images/alice.jpg" alt="Profile Image" class="rounded-circle" width="40" height="40">
+    </nav>
+    <h1>Home</h1>
+
+    <div class="container search-bar">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Software Engineer" aria-label="Job Title">
+            <input type="text" class="form-control" placeholder="Charlotte, NC, USA" aria-label="Location">
+            <button class="btn btn-primary" type="button">Search</button>
+        </div>
+        <div class="filter-tags">
+            <button class="btn btn-outline-secondary btn-sm">Full-Time ✕</button>
+            <button class="btn btn-outline-secondary btn-sm">Within 50 miles ✕</button>
+            <button class="btn btn-outline-secondary btn-sm">$90,000+ ✕</button>
+        </div>
+    </div>
+
+    
+    <!-- Job Listings -->
+    <div class="container">
+        <div class="row">
+            <!-- Job Cards -->
+            <div class="col-md-6">
+                <h2>Job Listings</h2>
+                <div class="job-card">
+                    <h5>Software Engineer - Front End</h5>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, porro. Quidem nostrum, ab rem autem recusandae nulla, corporis harum eius ipsum laudantium eligendi illo reprehenderit cupiditate ut similique saepe asperiores!</p>
+                </div>
+                <div class="job-card">
+                    <h5>Software Engineer I</h5>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, porro. Quidem nostrum, ab rem autem recusandae nulla, corporis harum eius ipsum laudantium eligendi illo reprehenderit cupiditate ut similique saepe asperiores!</p>
+                </div>
+                <div class="job-card">
+                    <h5>Software Engineer - Backend</h5>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, porro. Quidem nostrum, ab rem autem recusandae nulla, corporis harum eius ipsum laudantium eligendi illo reprehenderit cupiditate ut similique saepe asperiores!</p>
+                </div>
+            </div>
+            <!-- Job Details -->
+            <div class="col-md-6">
+                <div class="job-details">
+                    <h5>Software Engineer - Front End</h5>
+                    <p>SomeCompany</p>
+                    <p>Charlotte, NC 28217</p>
+                    <h6>Job Description</h6>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, porro. Quidem nostrum, ab rem autem recusandae nulla, corporis harum eius ipsum laudantium eligendi illo reprehenderit cupiditate ut similique saepe asperiores!</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-apply me-2">Apply Now</button>
+                        <button class="btn btn-save">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"></script>
+</body>
+</html>
