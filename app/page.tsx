@@ -1,101 +1,122 @@
-import Image from "next/image";
+"use client";  // Add this to make the component a client component
 
-export default function Home() {
+
+// import './css/styles.css';  // Adjust path according to your directory structure
+import '../css/styles.css';  // Correct path to styles.css
+
+import React, { useEffect, useState } from "react";
+
+interface Job {
+  id: string;
+  title: string;
+  location: { display_name: string };
+  company: { display_name: string };
+  description: string;
+  redirect_url: string;
+}
+
+const HomePage: React.FC = () => {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(
+          `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=2f8ca26b&app_key=f6132cf569dae73c3e4e7956d978bad0&results_per_page=10&what=software%20engineer&where=Charlotte`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch jobs");
+        }
+        const data = await response.json();
+        setJobs(data.results);
+      } catch (error) {
+        setError("An error occurred while fetching jobs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="home-page">
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="logo">LAKA</div>
+        <ul className="nav-links">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/saved">Saved Jobs</a></li>
+          <li><a href="/post">Post a Job</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div className="profile-icon">
+          <img src="/path-to-profile-icon.png" alt="Profile" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </nav>
+
+      {/* Search Bar */}
+      <header>
+        <input type="text" placeholder="Software Engineer" />
+        <input type="text" placeholder="Charlotte, NC, USA" />
+        <button>Search</button>
+      </header>
+
+      {/* Filters */}
+      <div className="filters">
+        <button>Full-Time</button>
+        <button>Within 50 miles</button>
+        <button>$90,000+</button>
+      </div>
+
+      {/* Job Listings and Details */}
+      <div className="content">
+        <div className="job-list">
+          {loading && <p>Loading jobs...</p>}
+          {error && <p className="error">{error}</p>}
+          {!loading && !error && jobs.map((job) => (
+            <div
+              key={job.id}
+              className="job-card"
+              onClick={() => setSelectedJob(job)}
+            >
+              <h3>{job.title}</h3>
+              <p>{job.company.display_name}</p>
+              <p>{job.location.display_name}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="job-details">
+          {selectedJob ? (
+            <>
+              <h3>{selectedJob.title}</h3>
+              <p>{selectedJob.company.display_name}</p>
+              <p>{selectedJob.location.display_name}</p>
+              <h4>Job Description</h4>
+              <p>{selectedJob.description}</p>
+              <div className="job-actions">
+                <button
+                  onClick={() => window.open(selectedJob.redirect_url, "_blank")}
+                  className="apply-button"
+                >
+                  Apply Now
+                </button>
+                <button className="save-button">Save</button>
+              </div>
+            </>
+          ) : (
+            <p>Select a job to view details</p>
+          )}
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;

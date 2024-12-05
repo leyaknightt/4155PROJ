@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        nav a.active {
+        font-weight: bold; /* Make active link bold */
+        color: #0056b3; /* Darker color for the active link */
+    }
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <a href='index.html'>Home</a>
+        <a href='login.html'>Login</a>
+        <a href='signup.html' class="active">Sign Up</a>
+        <a href='profile.html'>Profile</a>
+    </nav>
+    <h1>Sign Up</h1>
+    <form>
+        <table> 
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="text" id="email" name="email" class="fixed-width"></td>
+
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="text" id="password" name="password" class="fixed-width"></td>
+            </tr>
+                <td><label for="repassword"> Re-Enter Password</label></td>
+                <td><input type="text" id="repassword" name="repassword" class="fixed-width"></td>
+            <tr>
+                <td colspan="2" class="align-right"><button>Submit</button></td>
+            </tr>
+        </table>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"></script>
+</body>
+</html>
