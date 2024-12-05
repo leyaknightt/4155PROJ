@@ -53,8 +53,7 @@ const HomePage: React.FC = () => {
         <ul className="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="/post">Post a Job</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
         <div className="profile-icon">
           <Link href="/profile">

@@ -121,11 +121,11 @@ export default function Profile() {
                             </ul>
                         </div>
                     </div>)}
-                <h2>Education</h2>
+            <h2>Education</h2>
                 <ul className="cards">
                     <EducationSection />
                 </ul>
-                <h2>Certifications</h2>
+            <h2>Certifications</h2>
                 <Certifications />
                 
                 {/* Additional Details Section */}
@@ -171,7 +171,7 @@ export default function Profile() {
                         </div>
                     </div>
                 </section>
-                <h2>Experience</h2>
+            <h2>Experience</h2>
                 <section className="cards">
                     <ExperienceSection />
                 </section>

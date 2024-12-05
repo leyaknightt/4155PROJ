@@ -43,6 +43,8 @@ body, html {
   .nav-links li {
     display: inline;
     margin: 10px;
+    font-weight: bold;
+    font-size: x-large;
   }
   
   .nav-links a {
@@ -145,6 +147,7 @@ body, html {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    height: fit-content;
   }
   
   .job-details h3, .job-details h4 {
