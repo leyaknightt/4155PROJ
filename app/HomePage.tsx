@@ -1,6 +1,7 @@
 "use client";  // Add this to make the component a client component
 
 
+import Link from 'next/link';
 // import './css/styles.css';  // Adjust path according to your directory structure
 import '../css/styles.css';  // Correct path to styles.css
 
@@ -20,6 +21,8 @@ const HomePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchLocation, setSearchLocation] = useState<string>('');
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -44,35 +47,67 @@ const HomePage: React.FC = () => {
     fetchJobs();
   }, []);
 
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(
+        `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=2f8ca26b&app_key=f6132cf569dae73c3e4e7956d978bad0&results_per_page=10&what=${encodeURIComponent(
+          searchKeyword || "technology"
+        )}&where=${encodeURIComponent(searchLocation || "Charlotte")}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch jobs");
+      }
+      const data = await response.json();
+      setJobs(data.results);
+    } catch (error) {
+      setError("An error occurred while fetching jobs.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="home-page">
       {/* Navbar */}
       <nav className="navbar">
         <div className="logo">LAKA</div>
         <ul className="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/saved">Saved Jobs</a></li>
-          <li><a href="/post">Post a Job</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/login">Logout</a></li>
         </ul>
         <div className="profile-icon">
-          <img src="/path-to-profile-icon.png" alt="Profile" />
+          <Link href="/profile">
+            <img src="/path-to-profile-icon.png" alt="Profile" style={{ cursor: 'pointer' }} />
+          </Link>
         </div>
       </nav>
 
       {/* Search Bar */}
       <header>
-        <input type="text" placeholder="Software Engineer" />
-        <input type="text" placeholder="Charlotte, NC, USA" />
-        <button>Search</button>
-      </header>
+  <input
+    type="text"
+    placeholder="Software Engineer"
+    value={searchKeyword}
+    onChange={(e) => setSearchKeyword(e.target.value)}
+  />
+  <input
+    type="text"
+    placeholder="Charlotte, NC, USA"
+    value={searchLocation}
+    onChange={(e) => setSearchLocation(e.target.value)}
+  />
+  <button onClick={handleSearch}>Search</button>
+</header>
 
-      {/* Filters */}
+      {/* Filters
       <div className="filters">
         <button>Full-Time</button>
         <button>Within 50 miles</button>
         <button>$90,000+</button>
-      </div>
+      </div> */}
 
       {/* Job Listings and Details */}
       <div className="content">

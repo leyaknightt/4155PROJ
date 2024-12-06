@@ -7,6 +7,8 @@ import BioEditor from './bioEditor';
 import EducationSection from './educationSection';
 import Certifications from './certifsSection';
 import ExperienceSection from './experienceSection';
+import Link from 'next/link';
+
 
 export default function Profile() {
     // Create state to store different tags
@@ -65,8 +67,23 @@ export default function Profile() {
 
     return (
         <>
+         <main className="profile">
+         {/* Navbar */}
+      <nav className="navbar">
+        <div className="logo">LAKA</div>
+        <ul className="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div className="profile-icon">
+          <Link href="/profile">
+            <img src="/path-to-profile-icon.png" alt="Profile" style={{ cursor: 'pointer' }} />
+          </Link>
+        </div>
+      </nav>
             <h1>Profile</h1>
-            <main className="profile">
+           
                 {isEditing ? (
                     <BioEditor existingUserData={profileData} onSave={handleBioSave} />
                 ) : (
@@ -103,11 +120,11 @@ export default function Profile() {
                             </ul>
                         </div>
                     </div>)}
-                <h2>Education</h2>
+            <h2>Education</h2>
                 <ul className="cards">
                     <EducationSection />
                 </ul>
-                <h2>Certifications</h2>
+            <h2>Certifications</h2>
                 <Certifications />
                 
                 {/* Additional Details Section */}
@@ -153,7 +170,7 @@ export default function Profile() {
                         </div>
                     </div>
                 </section>
-                <h2>Experience</h2>
+            <h2>Experience</h2>
                 <section className="cards">
                     <ExperienceSection />
                 </section>
