@@ -121,6 +121,7 @@ const ExperienceSection = () => {
                                 name="jobTitle"
                                 value={newExperience.jobTitle}
                                 onChange={handleInputChange}
+                                placeholder='Enter job title'
                             />
                         </div>
                         <div>
@@ -130,6 +131,7 @@ const ExperienceSection = () => {
                                 name="company"
                                 value={newExperience.company}
                                 onChange={handleInputChange}
+                                placeholder='Enter company name'
                             />
                         </div>
                         <div>
@@ -172,6 +174,7 @@ const ExperienceSection = () => {
                             name="jobTitle"
                             value={editExperience.jobTitle}
                             onChange={handleEditChange}
+                            placeholder='Enter job title'
                         />
                     </div>
                     <div>
@@ -181,6 +184,7 @@ const ExperienceSection = () => {
                             name="company"
                             value={editExperience.company}
                             onChange={handleEditChange}
+                            placeholder='Enter company name'
                         />
                     </div>
                     <div>

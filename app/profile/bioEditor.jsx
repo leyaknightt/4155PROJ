@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 
 export default function BioEditor({ existingData, onSave }) {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        bio: '',
-        phone: '',
-        location:'',
+        name: 'Jane Doe',
+        email: 'jane.doe@gmail.com',
+        bio: 'Aspiring software developer with a passion for learning.',
+        phone: '704-123-4567',
+        location:'Charlotte, NC',
     });
 
     // intialize form data with existing user data
@@ -35,7 +35,8 @@ export default function BioEditor({ existingData, onSave }) {
     }
 
     // save changes
-    function handleSave() {
+    function handleSave(e) {
+        e.preventDefault();
         onSave(formData);
     }
 
@@ -44,7 +45,7 @@ export default function BioEditor({ existingData, onSave }) {
             <form>
                 {/* Name Input */}
                 <div>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Name: </label>
                     <input type="text"
                         name="name"
                         id="name"
@@ -53,18 +54,20 @@ export default function BioEditor({ existingData, onSave }) {
                         placeholder="Enter your name"
                          />
                 </div>
+                <br />
                 {/* bio input */}
                 <div>
-                    <label htmlFor="bio">Bio</label>
+                    <label htmlFor="bio">Bio: </label>
                     <textarea name="bio"
                         id="bio"
                         value={formData.bio}
                         onChange={handleInputChange}
                         placeholder="Tell us about yourself" />
                 </div>
+                <br />
                 {/*Email */}
                 <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email: </label>
                     <input type="email"
                         name="email"
                         id="email"
@@ -72,9 +75,10 @@ export default function BioEditor({ existingData, onSave }) {
                         onChange={handleInputChange}
                         placeholder="Enter your email" />
                 </div>
+                <br />
                 {/* Phone */}
                 <div>
-                    <label htmlFor="phone">Phone</label>
+                    <label htmlFor="phone">Phone: </label>
                     <input type="tel"
                         name="phone"
                         id="phone"
@@ -82,9 +86,10 @@ export default function BioEditor({ existingData, onSave }) {
                         onChange={handleInputChange}
                         placeholder="Enter your number" />
                 </div>
+                <br />
                 {/* Location */}
                 <div>
-                    <label htmlFor="location">Location</label>
+                    <label htmlFor="location">Location: </label>
                     <input type="text"
                         name="location"
                         id="location"
