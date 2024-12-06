@@ -21,6 +21,8 @@ const HomePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchLocation, setSearchLocation] = useState<string>('');
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -45,6 +47,27 @@ const HomePage: React.FC = () => {
     fetchJobs();
   }, []);
 
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(
+        `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=2f8ca26b&app_key=f6132cf569dae73c3e4e7956d978bad0&results_per_page=10&what=${encodeURIComponent(
+          searchKeyword
+        )}&where=${encodeURIComponent(searchLocation)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch jobs");
+      }
+      const data = await response.json();
+      setJobs(data.results);
+    } catch (error) {
+      setError("An error occurred while fetching jobs.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="home-page">
       {/* Navbar */}
@@ -53,7 +76,7 @@ const HomePage: React.FC = () => {
         <ul className="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/login">Logout</a></li>
         </ul>
         <div className="profile-icon">
           <Link href="/profile">
@@ -64,10 +87,20 @@ const HomePage: React.FC = () => {
 
       {/* Search Bar */}
       <header>
-        <input type="text" placeholder="Software Engineer" />
-        <input type="text" placeholder="Charlotte, NC, USA" />
-        <button>Search</button>
-      </header>
+  <input
+    type="text"
+    placeholder="Software Engineer"
+    value={searchKeyword}
+    onChange={(e) => setSearchKeyword(e.target.value)}
+  />
+  <input
+    type="text"
+    placeholder="Charlotte, NC, USA"
+    value={searchLocation}
+    onChange={(e) => setSearchLocation(e.target.value)}
+  />
+  <button onClick={handleSearch}>Search</button>
+</header>
 
       {/* Filters
       <div className="filters">
