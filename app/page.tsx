@@ -53,8 +53,8 @@ const HomePage: React.FC = () => {
       setError(null);
       const response = await fetch(
         `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=2f8ca26b&app_key=f6132cf569dae73c3e4e7956d978bad0&results_per_page=10&what=${encodeURIComponent(
-          searchKeyword
-        )}&where=${encodeURIComponent(searchLocation)}`
+          searchKeyword || "technology"
+        )}&where=${encodeURIComponent(searchLocation || "Charlotte")}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch jobs");
