@@ -1,8 +1,33 @@
-export default function Page() {
+"use client";
+//import { redirect } from "@/node_modules/react-router-dom/dist/index";
+import React, { useState } from "react";
+import '../login/login.css';
+
+export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        // Hardcoded credentials for login feature
+        const mockUser = {
+            email: "test@example.com",
+            password: "12345",
+        };
+
+        // Validate credentials
+        if (email === mockUser.email && password === mockUser.password) {
+            alert("Login successful!");
+            window.location.href = "/"; // Redirect to Dashboard. (Subject to change)
+        } else {
+            alert("Invalid email or password!");
+        }
+    };
     return (
         <>
             <h1>Login</h1>
-            <form>
+            <form onSubmit={handleLogin}>
                 <table>
                     <tbody>
                         <tr>
@@ -14,6 +39,8 @@ export default function Page() {
                                     type="text"
                                     id="email"
                                     name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className="fixed-width"
                                 />
                             </td>
@@ -27,6 +54,8 @@ export default function Page() {
                                     type="text"
                                     id="password"
                                     name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="fixed-width"
                                 />
                             </td>
