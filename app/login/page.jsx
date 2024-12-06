@@ -1,7 +1,7 @@
 "use client";
-import { redirect } from "@/node_modules/react-router-dom/dist/index";
+//import { redirect } from "@/node_modules/react-router-dom/dist/index";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import '../login/login.css';
 
 export default function Login() {
     const [email, setEmail] = useState("");
