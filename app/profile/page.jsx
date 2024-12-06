@@ -68,17 +68,16 @@ export default function Profile() {
     return (
         <>
          <main className="profile">
-        {/* Navbar */}
+         {/* Navbar */}
       <nav className="navbar">
         <div className="logo">LAKA</div>
         <ul className="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="/post">Post a Job</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
         <div className="profile-icon">
-        <Link href="/profile">
+          <Link href="/profile">
             <img src="/path-to-profile-icon.png" alt="Profile" style={{ cursor: 'pointer' }} />
           </Link>
         </div>

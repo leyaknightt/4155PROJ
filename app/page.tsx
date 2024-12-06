@@ -69,12 +69,12 @@ const HomePage: React.FC = () => {
         <button>Search</button>
       </header>
 
-      {/* Filters */}
+      {/* Filters
       <div className="filters">
         <button>Full-Time</button>
         <button>Within 50 miles</button>
         <button>$90,000+</button>
-      </div>
+      </div> */}
 
       {/* Job Listings and Details */}
       <div className="content">

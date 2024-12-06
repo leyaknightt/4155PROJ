@@ -12,7 +12,7 @@ describe('Page', () => {
 });
 
 // import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import HomePage from './HomePage';
+// import HomePage from './HomePage';
 
 global.fetch = jest.fn();
 
