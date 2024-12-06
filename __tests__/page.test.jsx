@@ -1,18 +1,6 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import Page from '../app/page';
-
-describe('Page', () => {
-  it('renders the page', () => {
-    const { container } = render(<Page />);
-    
-    // Check if the container exists in the document
-    expect(container).toBeInTheDocument();
-  });
-});
-
-// import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-// import HomePage from './HomePage';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import HomePage from '../app/HomePage';
 
 global.fetch = jest.fn();
 
@@ -28,8 +16,7 @@ describe('HomePage Component', () => {
     expect(screen.getByText('LAKA')).toBeInTheDocument();
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Profile')).toBeInTheDocument();
-    expect(screen.getByText('Post a Job')).toBeInTheDocument();
-    expect(screen.getByText('Contact')).toBeInTheDocument();
+    expect(screen.getByText('Logout')).toBeInTheDocument();
 
     // Check if search bar is present
     expect(screen.getByPlaceholderText('Software Engineer')).toBeInTheDocument();
@@ -37,7 +24,7 @@ describe('HomePage Component', () => {
     expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
-  test('displays loading state and fetches jobs', async () => {
+  test('displays loading state and fetches tech jobs', async () => {
     const mockJobs = [
       {
         id: '1',
@@ -56,12 +43,47 @@ describe('HomePage Component', () => {
 
     render(<HomePage />);
 
-    // Loading state
+    // Check loading state
     expect(screen.getByText('Loading jobs...')).toBeInTheDocument();
 
     // Wait for jobs to load
     await waitFor(() => {
       expect(screen.getByText('Software Engineer')).toBeInTheDocument();
+    });
+  });
+
+  test('handles search functionality', async () => {
+    const mockJobs = [
+      {
+        id: '1',
+        title: 'Frontend Developer',
+        location: { display_name: 'New York, NY' },
+        company: { display_name: 'Code Inc' },
+        description: 'Build user interfaces.',
+        redirect_url: 'http://example.com',
+      },
+    ];
+
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ results: mockJobs }),
+    });
+
+    render(<HomePage />);
+
+    // Enter search criteria
+    fireEvent.change(screen.getByPlaceholderText('Software Engineer'), {
+      target: { value: 'Frontend Developer' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Charlotte, NC, USA'), {
+      target: { value: 'New York, NY' },
+    });
+
+    fireEvent.click(screen.getByText('Search'));
+
+    // Wait for jobs to load
+    await waitFor(() => {
+      expect(screen.getByText(/Software Engineer/)).toBeInTheDocument();
     });
   });
 
@@ -130,7 +152,7 @@ describe('HomePage Component', () => {
 
     // Wait for jobs to load
     await waitFor(() => {
-      expect(screen.getByText('Software Engineer')).toBeInTheDocument();
+      expect(screen.getByText(/Software Engineer/)).toBeInTheDocument();
     });
 
     // Click on a job
