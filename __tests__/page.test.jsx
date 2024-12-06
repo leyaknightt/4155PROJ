@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import HomePage from '../app/HomePage';
+import HomePage from '../app/page';
 
 global.fetch = jest.fn();
 

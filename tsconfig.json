@@ -37,7 +37,7 @@
     "app/index.jsx",
     "app/app.jsx",
     "app/login/page.jsx",
-    "app/HomePage.tsx",
+    "app/page.tsx",
     "app/profile/page.jsx",
     "app/signup/page.jsx"
   ],
