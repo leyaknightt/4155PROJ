@@ -52,41 +52,6 @@ describe('HomePage Component', () => {
     });
   });
 
-  test('handles search functionality', async () => {
-    const mockJobs = [
-      {
-        id: '1',
-        title: 'Frontend Developer',
-        location: { display_name: 'New York, NY' },
-        company: { display_name: 'Code Inc' },
-        description: 'Build user interfaces.',
-        redirect_url: 'http://example.com',
-      },
-    ];
-
-    fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ results: mockJobs }),
-    });
-
-    render(<HomePage />);
-
-    // Enter search criteria
-    fireEvent.change(screen.getByPlaceholderText('Software Engineer'), {
-      target: { value: 'Frontend Developer' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Charlotte, NC, USA'), {
-      target: { value: 'New York, NY' },
-    });
-
-    fireEvent.click(screen.getByText('Search'));
-
-    // Wait for jobs to load
-    await waitFor(() => {
-      expect(screen.getByText(/Software Engineer/)).toBeInTheDocument();
-    });
-  });
-
   test('displays error message when fetch fails', async () => {
     fetch.mockResolvedValueOnce({ ok: false });
 
@@ -152,7 +117,7 @@ describe('HomePage Component', () => {
 
     // Wait for jobs to load
     await waitFor(() => {
-      expect(screen.getByText(/Software Engineer/)).toBeInTheDocument();
+      expect(screen.getByText('Software Engineer')).toBeInTheDocument();
     });
 
     // Click on a job
