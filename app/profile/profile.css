@@ -1,0 +1,221 @@
+:root {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 550;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 550;
+    font-size: 21px;
+    text-align: center;
+}
+
+/* General layout */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile {
+    max-width: 1200px;
+    margin: auto;
+    /* padding: 20px; */
+  }
+  
+
+
+ /* Navbar */
+ .navbar {
+    display: flex;
+    align-items:start;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    margin: 15px;
+    width: 100%;               
+    position:static;            
+    top: 0;                     
+    left: 0;                    
+    z-index: 1000;               
+
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #085f0f;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: inline;
+    margin: 10px;
+  }
+  
+  .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-links a:hover {
+    color: #085f0f;
+    border-bottom: 2px solid #085f0f; /* Underline color on hover */
+
+  }
+  
+  .profile-icon img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: grey;
+  }
+
+
+/* Container for bio and pic */
+.personal-info {
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: #f2f2f2;
+    border-radius: 25px;
+    margin-bottom: 20px;
+
+}
+
+.profile-pic {
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.pic-and-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-details {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-editbtn {
+
+    margin-top: 10px;
+    text-align: right;
+}
+
+.profile-addbtn {
+    margin-left: 90%;
+
+}
+
+/*  Layout for every section */
+.cards {
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    padding: 15px;
+    margin: 10px 20px;
+}
+
+.card-info {
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 10px 10px;
+}
+
+/* CSS for education section */
+.education-btn {
+    margin: 5px 10px;
+    border-color: black;
+    border: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 5px;
+    background-color: #f2f2f2;
+}
+
+.education-btn:hover {
+    background-color: white;
+}
+
+/* CSS for certifications */
+.certs-container {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    gap: 5px;
+}
+
+/* CSS for tags */
+.tag {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.tagSelection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.delete-btn {
+    border: none;
+    color: white;
+    background-color: black;
+    padding: '5px 10px';
+}
+
+.tag-input {
+    border-color: black;
+    border: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skills-addbtn {
+    border: none;
+    margin-left: 10px;
+}
+
+.tagType {
+    border: 2px;
+    border-style: solid;
+    border-radius: 25px;
+
+}
+
+.tagType:focus {
+    background-color: darkgray;
+}
+
+.tagType:visited {
+    background-color: darkgray;
+}
+
+.edit-frm{
+    display: grid;
+    gap: 10px;
+}

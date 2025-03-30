@@ -10,15 +10,18 @@
     "test": "jest"
   },
   "dependencies": {
+    "@testing-library/user-event": "^14.5.2",
+    "jest-fetch-mock": "^3.0.3",
     "mongodb": "^3.5.9",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
+    "react-router-dom": "^6.27.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/node": "^20",
     "@types/react": "^18",
